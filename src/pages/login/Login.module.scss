@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f6f6f6;
+  background-color: $light-gray-01;
 }
 
 .loginBox {
@@ -15,8 +15,8 @@
   max-width: 440px;
   padding: $spacing-05;
   border-radius: 8px;
-  box-shadow: 0 0 10px 2px #d2d2d2;
-  background-color: #f2f2f2;
+  box-shadow: 0 0 10px 2px $light-gray-03;
+  background-color: $light-gray-02;
 
   @media (min-width: 500px) {
     padding: $spacing-06;

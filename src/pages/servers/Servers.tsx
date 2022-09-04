@@ -1,7 +1,13 @@
 import React from 'react';
+import NavBar from '../../components/navBar/NavBar';
 
 const Servers: React.FC = () => {
-  return <h1>Servers page</h1>;
+  return (
+    <div>
+      <NavBar />
+      <h1>Servers page</h1>
+    </div>
+  );
 };
 
 export default Servers;

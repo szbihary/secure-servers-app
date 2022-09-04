@@ -1,0 +1,40 @@
+@import 'src/styles/tokens.scss';
+
+.navBar {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: $gray-07;
+
+  @media (min-width: 500px) {
+    flex-direction: row;
+  }
+
+  .navGroupLeft {
+    flex-grow: 1;
+  }
+
+  a {
+    width: 100%;
+    float: left;
+    color: $light-gray-02;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+
+    @media (min-width: 500px) {
+      width: unset;
+    }
+
+    &.active {
+      background-color: $green-01;
+      color: white;
+    }
+
+    &:not(.active):hover {
+      background-color: $gray-01;
+      color: black;
+    }
+  }
+}

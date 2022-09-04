@@ -15,7 +15,7 @@ const App: React.FC = () => {
         <Route
           path="/servers"
           element={
-            <ProtectedRoute isAuthenticated={true} redirectPath="/">
+            <ProtectedRoute redirectPath="/">
               <Servers />
             </ProtectedRoute>
           }
