@@ -1,19 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import LoginForm from '../../components/loginForm/LoginForm';
+import styles from './Login.module.scss';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
 
-  const isAuthenticated = true; // temp
+  const isAuthenticated = false; // temp
 
   if (isAuthenticated) {
     navigate('/servers');
   }
+
   return (
-    <>
-      <h1>Login page</h1>
-      <button onClick={() => navigate('/servers')}>Log in</button>
-    </>
+    <div className={styles.loginPage}>
+      <div className={styles.loginBox}>
+        <LoginForm />
+      </div>
+    </div>
   );
 };
 

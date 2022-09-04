@@ -1,0 +1,24 @@
+@import 'src/styles/tokens.scss';
+
+.button {
+  padding: $spacing-04 $spacing-06;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: none;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $green-02;
+  }
+}
+
+.primary {
+  color: #fff;
+  background-color: $green-01;
+}
+
+.fullWidth {
+  width: 100%;
+}
