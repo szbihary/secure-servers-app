@@ -8,6 +8,7 @@ export interface LabeledInputProps {
   onChange: (value: string) => void;
   type?: InputType;
   placeholder?: string;
+  isRequired?: boolean;
 }
 
 export enum InputType {
@@ -22,6 +23,7 @@ const LabeledInput: React.FC<LabeledInputProps> = ({
   placeholder,
   value,
   onChange,
+  isRequired = false,
 }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
@@ -39,6 +41,7 @@ const LabeledInput: React.FC<LabeledInputProps> = ({
         placeholder={placeholder}
         value={value}
         onChange={handleInputChange}
+        required={isRequired}
       />
     </div>
   );

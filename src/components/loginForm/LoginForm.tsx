@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
+import { Credentials } from '../../@types';
 import Button, { ButtonType } from '../button/Button';
 import LabeledInput, { InputType } from '../labeledInput/LabeledInput';
 import styles from './LoginForm.module.scss';
 
-const LoginForm: React.FC = () => {
+export interface LoginFormProps {
+  onLogin: ({ username, password }: Credentials) => void;
+}
+
+const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('clicked');
+    onLogin({ username: userName, password });
   };
 
   return (
@@ -21,6 +26,7 @@ const LoginForm: React.FC = () => {
         type={InputType.TEXT}
         value={userName}
         onChange={(value) => setUserName(value)}
+        isRequired
       />
       <LabeledInput
         id="password"
@@ -28,6 +34,7 @@ const LoginForm: React.FC = () => {
         type={InputType.PASSSWORD}
         value={password}
         onChange={(value) => setPassword(value)}
+        isRequired
       />
       <div className={styles.submitButton}>
         <Button type={ButtonType.SUBMIT} text="Log In" fullWidth />
