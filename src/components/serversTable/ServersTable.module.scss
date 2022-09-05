@@ -1,0 +1,34 @@
+@import 'src/styles/tokens.scss';
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  th {
+    padding: $spacing-04 $spacing-05;
+    background-color: $green-02;
+    color: $white;
+  }
+
+  tr {
+    border-bottom: 1px solid $gray-01;
+  }
+
+  tr:nth-child(even) {
+    background-color: #e7e9eb;
+  }
+
+  td {
+    text-align: left;
+    padding: $spacing-02 $spacing-05;
+  }
+}
+
+.leftAlign {
+  text-align: left;
+}
+
+.rightAlign {
+  text-align: right;
+}

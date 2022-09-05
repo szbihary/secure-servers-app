@@ -5,6 +5,8 @@
   flex-direction: column;
   overflow: hidden;
   background-color: $gray-07;
+  position: sticky;
+  top: 0;
 
   @media (min-width: 500px) {
     flex-direction: row;
@@ -29,12 +31,12 @@
 
     &.active {
       background-color: $green-01;
-      color: white;
+      color: $white;
     }
 
     &:not(.active):hover {
       background-color: $gray-01;
-      color: black;
+      color: $black;
     }
   }
 }
