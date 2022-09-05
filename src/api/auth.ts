@@ -1,18 +1,7 @@
 import Cookies from 'js-cookie';
 import { Credentials } from '../@types';
 import { LOGIN_URL, SESSION_COOKIE_NAME } from '../config';
-
-export const handleResponse = async (response: Response) => {
-  if (!response.ok) {
-    throw Error(`Resposne status code: ${response.status}`);
-  }
-  return await response.json();
-};
-
-function handleError(error: Error) {
-  console.error('API call failed. ' + error);
-  throw error;
-}
+import { handleError, handleResponse } from './apiUtils';
 
 export const login = async (credentials: Credentials) => {
   return fetch(LOGIN_URL, {
