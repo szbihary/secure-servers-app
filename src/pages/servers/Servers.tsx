@@ -4,12 +4,13 @@ import { fetchServers } from '../../api/servers';
 import NavBar from '../../components/navBar/NavBar';
 import ServersTable from '../../components/serversTable/ServersTable';
 import styles from './Servers.module.scss';
+import LoadingOverlay from '../../components/loadingOverlay/LoadingOverlay';
 
 const Servers: React.FC = () => {
   const { isLoading, data } = useQuery(['servers'], fetchServers);
   let content = null;
   if (isLoading) {
-    content = <h3>Loading...</h3>;
+    content = <LoadingOverlay />;
   } else if (data) {
     content = (
       <div className={styles.tableContainer}>
