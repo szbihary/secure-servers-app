@@ -35,8 +35,15 @@ const columns = [
   }),
 ];
 
+const defaultSorting = [
+  {
+    id: 'distance',
+    desc: false,
+  },
+];
+
 const ServersTable: React.FC<ServersTableProps> = ({ data }) => {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [sorting, setSorting] = React.useState<SortingState>(defaultSorting);
 
   const table = useReactTable({
     data,
