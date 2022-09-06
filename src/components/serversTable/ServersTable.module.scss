@@ -1,12 +1,21 @@
 @import 'src/styles/tokens.scss';
 
+@mixin sortingHeader {
+  display: flex;
+  flex-direction: row;
+  min-width: 140px;
+  user-select: none;
+  cursor: pointer;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
 
   th {
-    padding: $spacing-04 $spacing-05;
+    line-height: $spacing-06;
+    padding: $spacing-03 $spacing-05;
     background-color: $green-02;
     color: $white;
   }
@@ -31,4 +40,19 @@
 
 .rightAlign {
   text-align: right;
+}
+
+.sortingHeaderLeft {
+  @include sortingHeader;
+  justify-content: flex-start;
+}
+
+.sortingHeaderRight {
+  @include sortingHeader;
+  justify-content: flex-end;
+}
+
+.rightAlignHeader:last-child {
+  margin-right: $spacing-06;
+  justify-self: flex-end;
 }

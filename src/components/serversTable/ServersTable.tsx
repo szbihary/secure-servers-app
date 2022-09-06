@@ -1,11 +1,15 @@
 import React from 'react';
-import styles from './ServersTable.module.scss';
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
+  getSortedRowModel,
+  SortingState,
   useReactTable,
 } from '@tanstack/react-table';
+import IconArrowUp24 from '../icons/IconArrowUp24';
+import IconArrowDown24 from '../icons/IconArrowDown24';
+import styles from './ServersTable.module.scss';
 
 export interface Server {
   name: string;
@@ -24,7 +28,7 @@ const columns = [
     cell: (props) => <div className={styles.leftAlign}>{props.getValue()}</div>,
   }),
   columnHelper.accessor('distance', {
-    header: () => <div className={styles.rightAlign}>Distance</div>,
+    header: () => <div className={styles.rightAlignHeader}>Distance</div>,
     cell: (props) => (
       <div className={styles.rightAlign}>{props.getValue()}</div>
     ),
@@ -32,10 +36,17 @@ const columns = [
 ];
 
 const ServersTable: React.FC<ServersTableProps> = ({ data }) => {
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+
   const table = useReactTable({
     data,
     columns,
+    state: {
+      sorting,
+    },
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   return (
@@ -45,12 +56,27 @@ const ServersTable: React.FC<ServersTableProps> = ({ data }) => {
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
               <th key={header.id} className={styles.th}>
-                {header.isPlaceholder
-                  ? null
-                  : flexRender(
+                {header.isPlaceholder ? null : (
+                  <div
+                    {...{
+                      className: header.column.getCanSort()
+                        ? header.column.id === 'distance'
+                          ? styles.sortingHeaderRight
+                          : styles.sortingHeaderLeft
+                        : '',
+                      onClick: header.column.getToggleSortingHandler(),
+                    }}
+                  >
+                    {flexRender(
                       header.column.columnDef.header,
                       header.getContext()
                     )}
+                    {{
+                      asc: <IconArrowUp24 />,
+                      desc: <IconArrowDown24 />,
+                    }[header.column.getIsSorted() as string] ?? null}
+                  </div>
+                )}
               </th>
             ))}
           </tr>
