@@ -15,7 +15,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Install
 
-It's recommended to use `nvm` for node version management.
+It's recommended to use `nvm` for node version management. The project uses Node v16.15.0
 
 ```
 nvm install 16.15
