@@ -3,8 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchServers } from '../../api/servers';
 import NavBar from '../../components/navBar/NavBar';
 import ServersTable from '../../components/serversTable/ServersTable';
-import styles from './Servers.module.scss';
 import LoadingOverlay from '../../components/loadingOverlay/LoadingOverlay';
+import styles from './Servers.module.scss';
 
 const Servers: React.FC = () => {
   const { isLoading, error, data } = useQuery(['servers'], fetchServers);

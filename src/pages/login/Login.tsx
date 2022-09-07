@@ -6,8 +6,8 @@ import LoginForm from '../../components/loginForm/LoginForm';
 import LoadingOverlay from '../../components/loadingOverlay/LoadingOverlay';
 import type { Credentials } from '../../@types';
 import { SESSION_COOKIE_NAME } from '../../config';
-import styles from './Login.module.scss';
 import { HttpError } from '../../api/apiUtils';
+import styles from './Login.module.scss';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();

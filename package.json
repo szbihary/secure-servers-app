@@ -1,5 +1,6 @@
 {
   "name": "secure-servers-app",
+  "author": "Szabolcs Bihary",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
