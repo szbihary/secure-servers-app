@@ -7,10 +7,12 @@ import LoadingOverlay from '../../components/loadingOverlay/LoadingOverlay';
 import type { Credentials } from '../../@types';
 import { SESSION_COOKIE_NAME } from '../../config';
 import styles from './Login.module.scss';
+import { HttpError } from '../../api/apiUtils';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if (Cookies.get(SESSION_COOKIE_NAME)) {
@@ -20,18 +22,28 @@ const Login: React.FC = () => {
 
   const handleLogin = async (credentials: Credentials) => {
     setIsLoading(true);
-    const { token } = await login(credentials);
-    Cookies.set(SESSION_COOKIE_NAME, token, { expires: 1 });
-    setIsLoading(false);
-    if (token) {
-      navigate('/servers');
+    setErrorMessage('');
+    try {
+      const { token } = await login(credentials);
+      Cookies.set(SESSION_COOKIE_NAME, token, { expires: 1 });
+      setIsLoading(false);
+      if (token) {
+        navigate('/servers');
+      }
+    } catch (error) {
+      if (error instanceof HttpError && error?.status === 401) {
+        setErrorMessage('The username or password is incorrect.');
+      } else {
+        setErrorMessage('Someting went wrong, please try again.');
+      }
+      setIsLoading(false);
     }
   };
 
   return (
     <div className={styles.loginPage}>
       <div className={styles.loginBox}>
-        <LoginForm onLogin={handleLogin} />
+        <LoginForm onLogin={handleLogin} errorMessage={errorMessage} />
       </div>
       {isLoading && <LoadingOverlay />}
     </div>

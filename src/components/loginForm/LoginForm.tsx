@@ -6,9 +6,10 @@ import styles from './LoginForm.module.scss';
 
 export interface LoginFormProps {
   onLogin: ({ username, password }: Credentials) => void;
+  errorMessage?: string;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ onLogin, errorMessage }) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
@@ -36,6 +37,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         onChange={(value) => setPassword(value)}
         isRequired
       />
+      <div className={styles.errorMessage}>{errorMessage}</div>
       <div className={styles.submitButton}>
         <Button type={ButtonType.SUBMIT} text="Log In" fullWidth />
       </div>
