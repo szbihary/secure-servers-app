@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import { FETCH_SERVER_LIST_URL, SESSION_COOKIE_NAME } from '../config';
-import http from './apiUtils';
+import http from './http';
 
 export const fetchServers = async () => {
   const token = Cookies.get(SESSION_COOKIE_NAME);

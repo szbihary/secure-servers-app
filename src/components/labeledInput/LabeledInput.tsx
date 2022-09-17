@@ -13,7 +13,7 @@ export interface LabeledInputProps {
 
 export enum InputType {
   TEXT = 'text',
-  PASSSWORD = 'password',
+  PASSWORD = 'password',
 }
 
 const LabeledInput: React.FC<LabeledInputProps> = ({

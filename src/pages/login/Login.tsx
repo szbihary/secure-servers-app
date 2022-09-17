@@ -34,7 +34,7 @@ const Login: React.FC = () => {
       if (error instanceof HttpError && error?.status === 401) {
         setErrorMessage('The username or password is incorrect.');
       } else {
-        setErrorMessage('Someting went wrong, please try again.');
+        setErrorMessage('Something went wrong, please try again.');
       }
       setIsLoading(false);
     }

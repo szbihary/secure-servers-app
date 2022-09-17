@@ -4,7 +4,6 @@ export class HttpError extends Error {
   constructor(status: number, message: string) {
     super(message);
     this.status = status;
-    Object.setPrototypeOf(this, HttpError.prototype);
   }
 
   getErrorMessage() {
@@ -20,27 +19,3 @@ export const throwErrorIfResponseIsNotOk = async (res: Response) => {
     return res;
   }
 };
-
-const http = {
-  get: (url: string, options = {}) =>
-    fetch(url, {
-      method: 'GET',
-      ...options,
-    })
-      .then(throwErrorIfResponseIsNotOk)
-      .then((res) => res.json()),
-
-  post: (url: string, { ...params }, options = {}) =>
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(params),
-      headers: {
-        'content-type': 'application/json',
-      },
-      ...options,
-    })
-      .then(throwErrorIfResponseIsNotOk)
-      .then((res) => res.json()),
-};
-
-export default http;

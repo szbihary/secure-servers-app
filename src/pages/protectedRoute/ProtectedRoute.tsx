@@ -1,6 +1,6 @@
 import React from 'react';
 import Cookies from 'js-cookie';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { SESSION_COOKIE_NAME } from '../../config';
 
 interface ProtectedRouteProps {
@@ -12,11 +12,13 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   children,
   redirectPath,
 }) => {
+  const navigate = useNavigate();
   const isAuthenticated = Cookies.get(SESSION_COOKIE_NAME);
   if (isAuthenticated) {
     return children;
   }
-  return <Navigate to={redirectPath} replace />;
+  navigate(redirectPath, { replace: true });
+  return null;
 };
 
 export default ProtectedRoute;

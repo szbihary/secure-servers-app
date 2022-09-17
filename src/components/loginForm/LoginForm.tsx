@@ -32,7 +32,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, errorMessage }) => {
       <LabeledInput
         id="password"
         label="Password"
-        type={InputType.PASSSWORD}
+        type={InputType.PASSWORD}
         value={password}
         onChange={(value) => setPassword(value)}
         isRequired
