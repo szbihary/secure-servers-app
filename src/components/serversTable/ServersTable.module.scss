@@ -25,11 +25,10 @@
   }
 
   tr:nth-child(even) {
-    background-color: #e7e9eb;
+    background-color: $light-gray-02;
   }
 
   td {
-    text-align: left;
     padding: $spacing-02 $spacing-05;
   }
 }

@@ -9,25 +9,17 @@ import {
 } from '@tanstack/react-table';
 import IconArrowUp24 from '../icons/IconArrowUp24';
 import IconArrowDown24 from '../icons/IconArrowDown24';
+import { Server, ServerData, ServersTableProps } from './types';
 import styles from './ServersTable.module.scss';
-
-export interface Server {
-  name: string;
-  distance: number;
-}
-
-export interface ServersTableProps {
-  data: Server[];
-}
 
 const columnHelper = createColumnHelper<Server>();
 
 const columns = [
-  columnHelper.accessor('name', {
+  columnHelper.accessor(ServerData.NAME, {
     header: () => <div className={styles.leftAlign}>Server Name</div>,
     cell: (props) => <div className={styles.leftAlign}>{props.getValue()}</div>,
   }),
-  columnHelper.accessor('distance', {
+  columnHelper.accessor(ServerData.DISTANCE, {
     header: () => <div className={styles.rightAlignHeader}>Distance</div>,
     cell: (props) => (
       <div className={styles.rightAlign}>{props.getValue()}</div>
@@ -37,7 +29,7 @@ const columns = [
 
 const defaultSorting = [
   {
-    id: 'distance',
+    id: ServerData.DISTANCE,
     desc: false,
   },
 ];
@@ -67,7 +59,7 @@ const ServersTable: React.FC<ServersTableProps> = ({ data }) => {
                   <div
                     {...{
                       className: header.column.getCanSort()
-                        ? header.column.id === 'distance'
+                        ? header.column.id === ServerData.DISTANCE
                           ? styles.sortingHeaderRight
                           : styles.sortingHeaderLeft
                         : '',

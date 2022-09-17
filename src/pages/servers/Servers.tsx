@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchServers } from '../../api/servers';
 import NavBar from '../../components/navBar/NavBar';
 import ServersTable from '../../components/serversTable/ServersTable';
+import SimpleServersTable from '../../components/serversTable/SimpleServersTable';
 import LoadingOverlay from '../../components/loadingOverlay/LoadingOverlay';
 import styles from './Servers.module.scss';
 
@@ -17,6 +18,7 @@ const Servers: React.FC = () => {
     content = (
       <div className={styles.tableContainer}>
         <ServersTable data={data} />
+        <SimpleServersTable data={data} />
       </div>
     );
   }
