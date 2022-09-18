@@ -2,24 +2,15 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import IconArrowDown24 from '../icons/IconArrowDown24';
 import IconArrowUp24 from '../icons/IconArrowUp24';
-import { Server, ServerData, ServersTableProps } from './types';
+import {
+  ColumnAlign,
+  ColumnDef,
+  ServerData,
+  ServersTableProps,
+  Sorting,
+} from './types';
 import styles from './ServersTable.module.scss';
-
-interface Sorting {
-  id: ServerData;
-  desc: boolean;
-}
-
-enum ColumnAlign {
-  LEFT = 'left',
-  RIGHT = 'right',
-}
-
-interface ColumnDef {
-  id: ServerData;
-  title: string;
-  align: ColumnAlign;
-}
+import { getSortedData } from './utils';
 
 const columns: ColumnDef[] = [
   { title: 'Server Name', id: ServerData.NAME, align: ColumnAlign.LEFT },
@@ -39,20 +30,6 @@ const getAlignClass = (align: ColumnAlign) => {
       return styles.rightAlign;
     default:
       return '';
-  }
-};
-
-const getSortedData = (data: Server[], sorting: Sorting) => {
-  if (sorting.id === ServerData.NAME) {
-    return [...data].sort((a, b) =>
-      sorting.desc ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name)
-    );
-  } else if (sorting.id === ServerData.DISTANCE) {
-    return [...data].sort((a, b) =>
-      sorting.desc ? b.distance - a.distance : a.distance - b.distance
-    );
-  } else {
-    return data;
   }
 };
 
@@ -96,6 +73,7 @@ const SimpleServersTable: React.FC<ServersTableProps> = ({ data }) => {
           <tr
             key={`${serverData.name}${serverData.distance}`}
             className={styles.tr}
+            data-testid="tr"
           >
             {columns.map((column) => (
               <td

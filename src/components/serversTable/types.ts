@@ -11,3 +11,19 @@ export interface Server {
 export interface ServersTableProps {
   data: Server[];
 }
+
+export interface Sorting {
+  id: ServerData;
+  desc: boolean;
+}
+
+export enum ColumnAlign {
+  LEFT = 'left',
+  RIGHT = 'right',
+}
+
+export interface ColumnDef {
+  id: ServerData;
+  title: string;
+  align: ColumnAlign;
+}
