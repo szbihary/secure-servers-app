@@ -12,6 +12,17 @@ const columns = [
   { title: 'Distance', id: ServerData.DISTANCE, align: ColumnAlign.RIGHT },
 ];
 
+const getAlignClass = (align: ColumnAlign) => {
+  switch (align) {
+    case ColumnAlign.LEFT:
+      return styles.leftAlign;
+    case ColumnAlign.RIGHT:
+      return styles.rightAlign;
+    default:
+      return '';
+  }
+};
+
 const SimpleServersTable: React.FC<ServersTableProps> = ({ data }) => {
   return (
     <table className={styles.table}>
@@ -20,10 +31,7 @@ const SimpleServersTable: React.FC<ServersTableProps> = ({ data }) => {
           {columns.map((column) => (
             <th
               key={column.id}
-              className={classNames(styles.th, {
-                [styles.leftAlign]: column.align === ColumnAlign.LEFT,
-                [styles.rightAlign]: column.align === ColumnAlign.RIGHT,
-              })}
+              className={classNames(styles.th, getAlignClass(column.align))}
             >
               {column.title}
             </th>
@@ -32,17 +40,11 @@ const SimpleServersTable: React.FC<ServersTableProps> = ({ data }) => {
       </thead>
       <tbody>
         {data.map((serverData) => (
-          <tr
-            key={`${serverData.distance}${serverData.name}`}
-            className={styles.tr}
-          >
+          <tr key={serverData.name} className={styles.tr}>
             {columns.map((column) => (
               <td
                 key={column.id}
-                className={classNames(styles.td, {
-                  [styles.leftAlign]: column.align === ColumnAlign.LEFT,
-                  [styles.rightAlign]: column.align === ColumnAlign.RIGHT,
-                })}
+                className={classNames(styles.td, getAlignClass(column.align))}
               >
                 {serverData[column.id]}
               </td>
